@@ -1,24 +1,31 @@
 <x-layout.app>
-    <h3>Halaman Tambah Mahasiswa</h3>
-    <form action="{{ route( 'Student-store' )}}" method="post">
+    <h3>Halaman Tambah Bunga</h3>
+    <form action="{{ route('bloomify.store') }}" method="post">
         @csrf
         <div>
-            <label for="nama">Nama: </label>
-            <input type="text" id="nama" name="nama" value="{{ old('nama') }}">
-            @error('nama'){{$message}}@enderror
+            <label for="nama_bunga">Nama Bunga: </label>
+            <input type="text" id="nama_bunga" name="nama_bunga" value="{{ old('nama_bunga') }}">
+            @error('nama_bunga') <span style="color: red;">{{ $message }}</span> @enderror
         </div>
 
         <div>
-            <label for="nim">NIM: </label>
-            <input type="text" id="nim" name="nim" value="{{ old('nim') }}">
-            @error('nim'){{$message}}@enderror
+            <label for="harga">Harga: </label>
+            <input type="number" id="harga" name="harga" value="{{ old('harga') }}">
+            @error('harga') <span style="color: red;">{{ $message }}</span> @enderror
         </div>
 
         <div>
-            <label for="jenis_kelamin">Jenis Kelamin: </label>
-            <input type="text" id="jenis_kelamin" name="jenis_kelamin" value="{{ old('jenis_kelamin') }}">
-            @error('jenis_kelamin'){{$message}}@enderror
+            <label for="stok">Stok: </label>
+            <input type="number" id="stok" name="stok" value="{{ old('stok') }}">
+            @error('stok') <span style="color: red;">{{ $message }}</span> @enderror
         </div>
-        <button type="submit">Simpan</button>
+
+        <div>
+            <label for="kategori">Kategori: </label>
+            <input type="text" id="kategori" name="kategori" value="{{ old('kategori') }}" placeholder="Contoh: Buket, Mawar, Meja">
+            @error('kategori') <span style="color: red;">{{ $message }}</span> @enderror
+        </div>
+        
+        <button type="submit" style="margin-top: 10px;">Simpan</button>
     </form>
 </x-layout.app>
