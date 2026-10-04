@@ -1,13 +1,28 @@
 <?php
 
-use App\Http\Controllers\StudentController;
+use App\Http\Controllers\BloomifyController;
+use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\PesananController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/',[StudentController::class,'index'])->name("Student-list");
-Route::get('/about',[StudentController::class,'about'])->name("Student-about");
-Route::get('/Create',[StudentController::class,'create'])->name("Student-create");
-Route::post('/Create',[StudentController::class,'store'])->name("Student-store");
-Route::get('/show/{id}',[StudentController::class,'show'])->name("Student-show");
-Route::get('/edit/{Student}',[StudentController::class,'edit'])->name("Student-edit");
-Route::put('/edit/{Student}',[StudentController::class,'update'])->name("Student-update");
-Route::delete('/destroy/{Student}',[StudentController::class,'destroy'])->name("Student-destroy");
+// 1. Halaman Utama Katalog Bunga (Menggunakan nama rute 'list')
+Route::get('/', [BloomifyController::class, 'index'])->name("list");
+
+// 2. Halaman Tentang Toko Bunga (Menggunakan B besar Bloomify.about)
+Route::get('/about', [BloomifyController::class, 'about'])->name("Bloomify.about");
+
+// 3. Proses Tambah Data Bunga (Menggunakan B besar)
+Route::get('/Create', [BloomifyController::class, 'create'])->name("Bloomify.create");
+Route::post('/Create', [BloomifyController::class, 'store'])->name("Bloomify.store");
+
+// 4. Proses Tampil Detail, Edit, Update, dan Hapus Bunga (Menggunakan B besar)
+Route::get('/show/{id}', [BloomifyController::class, 'show'])->name("Bloomify.show");
+Route::get('/edit/{id}', [BloomifyController::class, 'edit'])->name("Bloomify.edit");
+Route::put('/edit/{id}', [BloomifyController::class, 'update'])->name("Bloomify.update");
+Route::delete('/destroy/{id}', [BloomifyController::class, 'destroy'])->name("Bloomify.destroy");
+
+// Menghidupkan otomatis jalur CRUD (index, create, store, edit, update, destroy)
+Route::resource('Pelanggan', PelangganController::class);
+Route::resource('Supplier', SupplierController::class);
+Route::resource('Pesanan', PesananController::class);

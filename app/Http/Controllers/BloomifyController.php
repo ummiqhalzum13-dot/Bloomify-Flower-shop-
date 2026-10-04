@@ -21,7 +21,7 @@ class BloomifyController extends Controller
     }
 
     public function store(Request $request){
-        $Bungas = $request->validate([
+        $dataBunga = $request->validate([
             'nama_bunga' => 'required',
             'harga' => 'required|numeric',
             'stok' => 'required',
@@ -29,7 +29,7 @@ class BloomifyController extends Controller
         ]);
 
         Bloomify::create($dataBunga);
-        return redirect()->route('Blomifyt-list')->with('success', 'Data mahasiswa berhasil ditambah');
+        return redirect()->route('list')->with('success', 'Bunga berhasil ditambah');
     }
 
     public function show(String $id){
@@ -42,7 +42,7 @@ class BloomifyController extends Controller
         return view('Bloomify.edit', compact('Bunga'));
     }
 
-    public function update(Request $request, Student $Student){
+    public function update(Request $request, String $id){
         $data = $request->validate([
             'nama_bunga' => 'required',
             'harga' => 'required|numeric',
@@ -50,16 +50,17 @@ class BloomifyController extends Controller
             'kategori' => 'required',
         ]);
 
+        $Bunga = Bloomify::findOrFail($id);
         $Bunga->update($data);
 
-        return redirect()->route('Bloomify.index')->with('success', 'Data bunga berhasil diubah!');
+        return redirect()->route('list')->with('success', 'Data bunga berhasil diubah!');
     }
 
-    public function destroy(Student $Student){
-        
+    public function destroy(String $id){
+        $Bunga = Bloomify::findOrFail($id);
         $Bunga->delete();
 
-        return redirect()->route('Bloomify.index')->with('success', 'Bunga berhasil dihapus!');
+        return redirect()->route('list')->with('success', 'Bunga berhasil dihapus!');
     }
 }
 
