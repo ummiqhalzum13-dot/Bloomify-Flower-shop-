@@ -7,17 +7,18 @@ use Illuminate\Http\Request;
 
 class PesananController extends Controller
 {
+     // 1. Menampilkan Tabel Data Pesanan
     public function index()
     {
         $pesanans = Pesanan::all();
         return view('Pesanan.index', compact('pesanans'));
     }
-
+ // 2. Menampilkan Form Tambah Pesanan
     public function create()
     {
         return view('Pesanan.create');
     }
-
+ // 3. Menyimpan Data Pesanan baru
     public function store(Request $request)
     {
         $data = $request->validate([

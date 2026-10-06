@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 // 1. Halaman Utama Katalog Bunga (Menggunakan nama rute 'list')
 Route::get('/', [BloomifyController::class, 'index'])->name("list");
 
-// 2. Halaman Tentang Toko Bunga (Menggunakan B besar Bloomify.about)
+// 2. Halaman Tentang Toko Bunga (Bloomify.about)
 Route::get('/about', [BloomifyController::class, 'about'])->name("Bloomify.about");
 
 // 3. Proses Tambah Data Bunga (Menggunakan B besar)
